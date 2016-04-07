@@ -39,7 +39,8 @@ ADD downloads/cuda_7.5.18_linux.run /tmp/cuda.run
 # Change to the /tmp directory
 RUN cd /tmp && \
 # Make the run file executable and extract
-  chmod +x cuda.run && ./cuda.run -extract=`pwd` && \
+  chmod +x cuda.run && sync && \
+  ./cuda.run -extract=`pwd` && \
 # Install CUDA drivers (silent, no kernel)
   ./NVIDIA-Linux-x86_64-*.run -s --no-kernel-module && \
 # Install toolkit (silent)  
@@ -80,7 +81,7 @@ RUN conda install -y joblib dill && \
 RUN cd /root/mxnet/python && python setup.py install
 
 # Install OpenCV3
-RUN conda install -c https://conda.binstar.org/menpo opencv3
+RUN conda install -y -c https://conda.binstar.org/menpo opencv3
 
 # Set ~/mxnet as working directory
 WORKDIR /root/mxnet

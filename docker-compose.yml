@@ -1,0 +1,12 @@
+version: '2'
+services:
+  dmx:
+    build: .
+    volumes:
+     - ./images:/root/mxnet/example/neural-style/images
+     - ./model:/root/mxnet/example/neural-style/model
+    devices:
+     - "/dev/nvidiactl:/dev/nvidiactl"
+     - "/dev/nvidia-uvm:/dev/nvidia-uvm"
+     - "/dev/nvidia0:/dev/nvidia0"
+
